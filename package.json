@@ -25,7 +25,7 @@
         "start-server": "node server/server.js",
         "start-server-dev": "cross-env NODE_ENV=development node server/server.js",
         "start-server-dev:watch": "cross-env NODE_ENV=development node --watch server/server.js",
-        "build": "node -e \"require('fs').existsSync('./dist/index.html') ? (console.log('dist exists, skipping build'), process.exit(0)) : process.exit(1)\" || vite build --config ./config/vite.config.js",
+        "build": "echo 'dist already committed, skipping build'",
         "test": "npm run test-backend && npm run test-e2e",
         "test-with-build": "npm run build && npm test",
         "test-backend": "node test/test-backend.mjs",

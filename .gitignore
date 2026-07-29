@@ -13,6 +13,8 @@ dist-ssr
 /out
 /tmp
 .env
+bun.lock
+.tmp
 
 /extra/healthcheck.exe
 /extra/healthcheck
