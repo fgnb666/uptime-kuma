@@ -10,7 +10,10 @@
         "preserveConstEnums": true,
         "sourceMap": false,
         "strict": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "allowJs": true,
+        "noEmit": true
     },
-    "files": []
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
 }
