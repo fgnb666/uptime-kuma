@@ -1,2 +1,7 @@
-{}
+{
+    "compilerOptions": {
+        "noEmit": true
+    },
+    "include": []
+}
 EOF && git add tsconfig.json && git status --short && echo '' && echo '=== 确认 bun.lock 不被 git 跟踪 ===' && git check-ignore bun.lock && echo '✓ 被 gitignore 覆盖' || echo '⚠ 不在 gitignore中'
