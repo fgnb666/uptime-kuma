@@ -1,0 +1,24 @@
+(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))r(n);new MutationObserver(n=>{for(const s of n)if(s.type==="childList")for(const a of s.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&r(a)}).observe(document,{childList:!0,subtree:!0});function o(n){const s={};return n.integrity&&(s.integrity=n.integrity),n.referrerPolicy&&(s.referrerPolicy=n.referrerPolicy),n.crossOrigin==="use-credentials"?s.credentials="include":n.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function r(n){if(n.ep)return;n.ep=!0;const s=o(n);fetch(n.href,s)}})();const d=[{id:1,title:"从零开始搭建个人博客：我的技术选型与思考",excerpt:"记录我从选择框架到部署上线的全过程，分享技术选型背后的考量与经验教训。",date:"2026-07-28",tag:"tech",emoji:"🚀",readTime:"8 分钟"},{id:2,title:"Vue 3 组合式 API 实战：封装一个可复用的表格组件",excerpt:"深入解析 Composition API 的设计哲学，手把手教你构建企业级表格组件。",date:"2026-07-25",tag:"tech",emoji:"⚡",readTime:"12 分钟"},{id:3,title:"我的第一个开源项目获得了 500 个 Star",excerpt:"从灵光一闪到收获社区认可，分享开源路上的收获、挑战与感悟。",date:"2026-07-20",tag:"project",emoji:"🌟",readTime:"6 分钟"},{id:4,title:"使用 Docker Compose 构建高效的开发环境",excerpt:"告别繁琐的环境配置，用容器化的方式统一团队开发环境。",date:"2026-07-15",tag:"tech",emoji:"🐳",readTime:"10 分钟"},{id:5,title:"2026 年中总结：技术人的成长与焦虑",excerpt:"半年的技术探索、项目经历和心态变化，写给同样在路上的你。",date:"2026-07-10",tag:"life",emoji:"📝",readTime:"7 分钟"},{id:6,title:"用 Go 编写一个高性能的任务队列",excerpt:"从设计到实现，用 300 行代码打造一个轻量级的消息队列系统。",date:"2026-07-05",tag:"project",emoji:"🔧",readTime:"15 分钟"}],h=document.getElementById("themeToggle"),v=document.getElementById("postsGrid"),m=document.querySelectorAll(".filter-btn"),i=document.getElementById("mobileMenuBtn"),l=document.getElementById("navLinks"),y=document.querySelector(".header"),L=document.getElementById("progressBar"),c=document.getElementById("contactForm");function u(){return localStorage.getItem("theme")||"light"}function p(e){document.documentElement.setAttribute("data-theme",e),localStorage.setItem("theme",e)}p(u());h.addEventListener("click",()=>{const e=u();p(e==="dark"?"light":"dark")});function g(e="all"){const t=e==="all"?d:d.filter(o=>o.tag===e);v.innerHTML=t.map(o=>`
+    <article class="post-card" data-aos="fade-up">
+      <div class="post-card-image">
+        <span>${o.emoji}</span>
+      </div>
+      <div class="post-card-body">
+        <div class="post-card-meta">
+          <span class="post-card-date">📅 ${o.date}</span>
+          <span class="post-card-tag">${E(o.tag)}</span>
+        </div>
+        <h3 class="post-card-title">${o.title}</h3>
+        <p class="post-card-excerpt">${o.excerpt}</p>
+        <div class="post-card-footer">
+          <span class="post-card-readtime">☕ ${o.readTime}</span>
+          <span class="post-card-link">
+            阅读全文
+            <svg viewBox="0 0 24 24" width="14" height="14">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </article>
+  `).join(""),requestAnimationFrame(()=>{document.querySelectorAll("[data-aos]").forEach(o=>{o.classList.add("aos-animate")})})}function E(e){return{tech:"技术",life:"生活",project:"项目"}[e]||e}m.forEach(e=>{e.addEventListener("click",()=>{m.forEach(t=>t.classList.remove("active")),e.classList.add("active"),g(e.dataset.filter)})});i.addEventListener("click",()=>{i.classList.toggle("active"),l.classList.toggle("open")});l.querySelectorAll(".nav-link").forEach(e=>{e.addEventListener("click",()=>{i.classList.remove("active"),l.classList.remove("open")})});window.addEventListener("scroll",()=>{const e=window.scrollY;y.classList.toggle("scrolled",e>50);const t=document.documentElement.scrollHeight-window.innerHeight,o=e/t*100;L.style.width=`${Math.min(o,100)}%`,f()});function f(){const e=document.querySelectorAll("[data-aos]:not(.aos-animate)"),t=window.innerHeight;e.forEach(o=>{o.getBoundingClientRect().top<t*.85&&o.classList.add("aos-animate")})}window.addEventListener("load",()=>{f(),w()});function w(){document.querySelectorAll("[data-count]").forEach(t=>{const o=parseInt(t.dataset.count),r=2e3,n=Math.ceil(o/60);let s=0;const a=setInterval(()=>{s+=n,s>=o&&(s=o,clearInterval(a)),t.textContent=s},r/60)})}c.addEventListener("submit",e=>{e.preventDefault();const t=c.querySelector(".btn-submit"),o=t.innerHTML;t.innerHTML="✅ 已发送！",t.style.pointerEvents="none",setTimeout(()=>{t.innerHTML=o,t.style.pointerEvents="",c.reset()},3e3)});const T=new IntersectionObserver(e=>{e.forEach(t=>{t.isIntersecting&&(t.target.style.opacity="1",t.target.style.transform="translateY(0)")})},{threshold:.1});document.querySelectorAll(".section-header, .about-content, .contact-content").forEach(e=>{e.style.opacity="0",e.style.transform="translateY(30px)",e.style.transition="opacity 0.6s ease, transform 0.6s ease",T.observe(e)});g("all");
